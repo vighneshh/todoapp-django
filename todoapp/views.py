@@ -8,7 +8,7 @@ from .forms import AddForm
 class ToDoView(CreateView,ListView):
     model = Post
     form_class = AddForm
-    template_name = 'index.html'
+    template_name = 'todoapp/index.html'
 
 def Completed(request, pk):
     post = Post.objects.get(pk=pk)
