@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="ufc-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     
+  </head>
+        <title>To Do App</title>
+  <body>
+  	<header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="container ">
+          <h4 class="nav-text text-white">MY ToDoList APP</h4>
+     
+        </div>
+      </nav>
+    </header>
+
+
+  <main class="container">
+      <h4>Things To Do Today</h4>
+	
+
+      <form action="#" method="POST">
+      <div class="form-group">
+      <div class="input-group">
+	{% csrf_token %}
+	{{ form }}    
+<button type="submit" value="submit" class="btn btn-success">ADD</button>
+        </div>
+        </div>
+      </form>
+	
+
+        <a href="{% url 'deletecompleted' %}"><button type="submit" value="submit" class="btn btn-info">Delete Completed</button></a>
+        <a href="{% url 'deleteall' %}"><button type="submit" value="submit" class="btn btn-danger">Delete All</button></a>
+    
+       {% for post in object_list %}
+        <ul class="list-group">
+		{% if post.completed  %}
+		<li class="list-group-item list-group-item-dark"><del>{{ post.text }}</del></li>
+		{% else %}	
+		<a href="{% url 'completed' post.pk %}" class="text-dark"><li class="list-group-item">{{ post.text }}</li></a>
+		{% endif %}
+	</ul>
+	{% endfor %}
+
+  </main>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <footer class="container ">
+	<div class="nav-text text-white">Copyright &copy; 2017 <strong>ToDo App</strong></div>
+    </footer>
+    </nav>
+  
+         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+   
+  </body>
+</html>
+ 
